@@ -9,7 +9,7 @@ const CustomInput = ({ name, error, onChange }) => {
     return (
         <>
             <label htmlFor={CamelizedName} className={`label${error ? '-error' : '' }`}>{ name }</label>
-            <input type="text" name={CamelizedName} className={`custom-input${error ? '-error' : '' }`} onChange={e => onChange(CamelizedName, e.target.value)}/>
+            <input type="text" name={CamelizedName} className={`custom-input${error ? '-error' : '' }`} onChange={e => onChange(CamelizedName, e.target.value)} data-testid={CamelizedName}/>
         </>
     )
 };

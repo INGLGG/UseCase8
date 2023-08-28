@@ -1,19 +1,14 @@
 import { useMemo, useState } from 'react';
 import CustomInput from '../CustomInput/CustomInput';
-import { useDispatch } from 'react-redux';
-import { addPerson } from '../store';
 import { toCamelCase } from '../utils';
 import { isEmail, isEmpty } from 'validator';
 
 import './PersonalForm.css';
 
-const textInputs = ['First Name', 'Last Name', 'Email', 'Message'];
-const initialInputState = textInputs.reduce((o, key) => ({ ...o, [toCamelCase(key)]: false }), {});
-
-const PersonalForm = () => {
-
+const PersonalForm = ({textInputs, handleSubmit}) => {
+    const initialInputState = textInputs.reduce((o, key) => ({ ...o, [toCamelCase(key)]: false }), {});
+    
     const [validInputs, setValidInputs] = useState(initialInputState);
-    const dispatch = useDispatch();
 
     const isFormValid = useMemo(() => {
         return Object.keys(validInputs).every((k) => validInputs[k] === true) 
@@ -38,14 +33,6 @@ const PersonalForm = () => {
         }
     }
 
-    const onSubmit = (elements) => {
-
-        const newState = textInputs.reduce((o, key) => ({ ...o, [key]: elements[toCamelCase(key)].value }), {})
-        
-        dispatch(
-            addPerson({...newState})
-        )
-    }
 
     return (
         <div>
@@ -54,7 +41,7 @@ const PersonalForm = () => {
                 id="personal-form"
                 onSubmit={(e) => {
                     e.preventDefault();
-                    onSubmit(e.target.elements);
+                    handleSubmit(e.target.elements);
                 }}
             >
                 {textInputs.map(name => (

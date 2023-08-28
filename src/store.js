@@ -25,5 +25,6 @@ export default configureStore({
     }
 });
 
+export const reducer = directorySlice.reducer;
 export const { addPerson } = directorySlice.actions;
 export const showValues = (state) => state.directory.data;
