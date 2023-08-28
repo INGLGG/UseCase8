@@ -12,7 +12,6 @@ const directorySlice = createSlice({
     initialState,
     reducers: {
         addPerson(state, action) {
-            console.log(action.payload);
             state = {...action.payload}
         }
     }
