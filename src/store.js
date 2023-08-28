@@ -1,10 +1,12 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    "First Name": '',
-    "Last Name": '',
-    "Email": '',
-    "Message": ''
+    data: {
+        "First Name": '',
+        "Last Name": '',
+        "Email": '',
+        "Message": ''
+    }
 };
 
 const directorySlice = createSlice({
@@ -12,7 +14,7 @@ const directorySlice = createSlice({
     initialState,
     reducers: {
         addPerson(state, action) {
-            state = {...action.payload}
+            state.data = { ...action.payload }
         }
     }
 });
@@ -24,4 +26,4 @@ export default configureStore({
 });
 
 export const { addPerson } = directorySlice.actions;
-export const showDirectory = (state) => state.directory;
+export const showValues = (state) => state.directory.data;
